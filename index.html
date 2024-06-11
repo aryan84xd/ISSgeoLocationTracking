@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where is ISS</title>
+</head>
+<body>
+    <h1>Where is ISS?</h1>
+    <p>latitude:<span id="lat"></span></p>
+    <p>longitude:<span id="long"></span></p>
+
+    <script>
+        const ISSurl = "https://api.wheretheiss.at/v1/satellites/25544"
+        const lat= document.getElementById("lat")
+        const long = document.getElementById("long")
+        const getData = async()=>{
+            try{
+            const res = await fetch(ISSurl)
+            const data = await res.json()
+            console.log(data)
+            const {latitude,longitude} = data
+            console.log(latitude,longitude)
+            lat.textContent = latitude
+            long.textContent = longitude
+            }
+            catch(err){
+                console.log(err)
+            }
+        }
+        getData()
+    </script>
+</body>
+</html>
